@@ -13,17 +13,13 @@ int main()
 	uint8_t guess_var = ti_Open("GUESS","r");
 	struct guess
 	{
-		unsigned int high_score_1;
-		unsigned int high_score_2;
-		unsigned int high_score_3;
+		unsigned int high_scores[2];
 	}data;
 	unsigned int key;
 	if (guess_var == 0)
 	{
 		guess_var = ti_Open("GUESS","r+");
-		data.high_score_1 = 50;
-		data.high_score_2 = 50;
-		data.high_score_3 = 50;
+		data.high_scores[0]=data.high_scores[1]=data.high_scores[2]=50;
 		ti_Write(&data,sizeof(struct guess),1,guess_var);
 	}
 	ti_Close(guess_var);
