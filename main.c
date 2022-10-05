@@ -29,11 +29,11 @@ int main()
 	gfx_PrintStringXY("Escape to the OS",100,40);
 	gfx_PrintStringXY("High Scores:",120,60);
 	gfx_PrintStringXY("1:   ",125,70);
-	gfx_PrintInt(data.high_score_1,2);
+	gfx_PrintInt(data.high_score[0],2);
 	gfx_PrintStringXY("2:   ",125,80);
-	gfx_PrintInt(data.high_score_2,2);
+	gfx_PrintInt(data.high_scores[1],2);
 	gfx_PrintStringXY("3:   ",125,90);
-	gfx_PrintInt(data.high_score_3,2);
+	gfx_PrintInt(data.high_scores[2],2);
 	gfx_PrintStringXY("Press Enter to Start",130,130);
 	while(key = os_GetCSC(), key != sk_Enter)
 	{
@@ -64,18 +64,18 @@ int main()
 	}
 	gfx_PrintStringXY("You have guessed the correct key!",0,100);
 	gfx_PrintStringXY("Press the [Clear] to exit!",90,120);
-	if(tries<data.high_score_1)
+	if(tries<data.high_scores[0])
 	{
-		data.high_score_3=data.high_score_2;
-		data.high_score_2=data.high_score_1;
-		data.high_score_1=tries;
-	}else if(tries<data.high_score_2 && tries>data.high_score_1)
+		data.high_scores[2]=data.high_scores[1];
+		data.high_scores[1]=data.high_scores[0];
+		data.high_scores[0]=tries;
+	}else if(tries<data.high_scores[1] && tries>data.high_scores[0])
 	{
-		data.high_score_3=data.high_score_2;
-		data.high_score_2=tries;
-	}else if(tries<data.high_score_3 && tries>data.high_score_2)
+		data.high_scores[2]=data.high_scores[1];
+		data.high_scores[1]=tries;
+	}else if(tries<data.high_scores[2] && tries>data.high_scores[1])
 	{
-		data.high_score_3=tries;
+		data.high_scores[2]=tries;
 	}
 	ti_Write(&data,sizeof(struct guess),1,guess_var);
 	ti_SetArchiveStatus(true,guess_var);
